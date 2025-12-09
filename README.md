@@ -2,6 +2,8 @@
 
 A modern, web-based Modbus RTU Master tool for communicating with slave devices via serial port. Built with Python (Flask) and a responsive HTML/CSS frontend.
 
+![Screenshot](screenshot.png)
+
 ## Features
 
 - **Modern Web Interface**: Clean, dark-mode UI with responsive design.
