@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modbus RTU Master</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Modbus RTU Master</h1>
+            <div class="status-indicator" id="connectionStatus">Disconnected</div>
+        </header>
+
+        <div class="grid-layout">
+            <!-- Configuration Panel -->
+            <section class="card config-card">
+                <h2>Configuration</h2>
+                <div class="form-group">
+                    <label>Port</label>
+                    <div class="row">
+                        <select id="portSelect"></select>
+                        <button id="refreshBtn" class="icon-btn">↻</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Baudrate</label>
+                    <select id="baudSelect">
+                        <option value="9600">9600</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                        <option value="57600">57600</option>
+                        <option value="115200">115200</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Parity</label>
+                    <select id="paritySelect">
+                        <option value="None">None</option>
+                        <option value="Even">Even</option>
+                        <option value="Odd">Odd</option>
+                    </select>
+                </div>
+                <button id="connectBtn" class="primary-btn">Connect</button>
+            </section>
+
+            <!-- Raw Command Panel -->
+            <section class="card command-card">
+                <h2>Raw Command</h2>
+                <div class="form-group">
+                    <label>Hex String</label>
+                    <input type="text" id="hexInput" placeholder="01 03 00 00 00 01" value="01 03 00 00 00 01">
+                </div>
+                <div class="row checkbox-row">
+                    <input type="checkbox" id="crcCheck" checked>
+                    <label for="crcCheck">Auto Append CRC16</label>
+                </div>
+                <button id="sendBtn" class="action-btn">Send Command</button>
+            </section>
+
+            <!-- Scanner Panel -->
+            <section class="card scan-card">
+                <h2>Register Scanner</h2>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Slave ID</label>
+                        <input type="number" id="scanId" value="1" min="1" max="247">
+                    </div>
+                    <div class="form-group">
+                        <label>Function</label>
+                        <select id="scanFunc">
+                            <option value="3">03 (Holding)</option>
+                            <option value="4">04 (Input)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Start Addr</label>
+                        <input type="number" id="scanStart" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Count</label>
+                        <input type="number" id="scanCount" value="10" min="1">
+                    </div>
+                </div>
+                <button id="scanBtn" class="action-btn">Start Scan</button>
+            </section>
+        </div>
+
+        <!-- Log Panel -->
+        <section class="card log-card">
+            <div class="log-header">
+                <h2>Communication Log</h2>
+                <button id="clearLogBtn" class="text-btn">Clear</button>
+            </div>
+            <div id="logOutput" class="console-output"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
